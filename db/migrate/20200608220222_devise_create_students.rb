@@ -4,11 +4,11 @@ class DeviseCreateStudents < ActiveRecord::Migration[6.0]
   def change
     create_table :students do |t|
       ## Attributes 
-      t.string :firstname
-      t.string :lastname
+      t.string :first_name
+      t.string :last_name
       t.date :birthdate
       t.string :gender
-      t.string :adress
+      t.string :address
       t.string :city
       t.string :zip_code
       t.string :study_level

@@ -27,9 +27,9 @@ ActiveRecord::Schema.define(version: 2020_06_19_083556) do
     t.string "last_name"
     t.string "birthdate"
     t.string "gender"
-    t.string "adress"
+    t.string "address"
     t.string "city"
-    t.string "zipcode"
+    t.string "zip_code"
     t.index ["email"], name: "index_admins_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
@@ -75,11 +75,11 @@ ActiveRecord::Schema.define(version: 2020_06_19_083556) do
   end
 
   create_table "students", force: :cascade do |t|
-    t.string "firstname"
-    t.string "lastname"
+    t.string "first_name"
+    t.string "last_name"
     t.date "birthdate"
     t.string "gender"
-    t.string "adress"
+    t.string "address"
     t.string "city"
     t.string "zip_code"
     t.string "study_level"
@@ -105,9 +105,10 @@ ActiveRecord::Schema.define(version: 2020_06_19_083556) do
     t.string "first_name"
     t.string "last_name"
     t.string "birthdate"
-    t.string "adress"
+    t.string "gender"
+    t.string "address"
     t.string "city"
-    t.string "zipcode"
+    t.string "zip_code"
     t.string "expertise"
     t.index ["email"], name: "index_teachers_on_email", unique: true
     t.index ["reset_password_token"], name: "index_teachers_on_reset_password_token", unique: true
