@@ -3,4 +3,9 @@ class Admin < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+  # has_many :sessions
+  # has_many :categories
+  # has_many :rooms
+  has_many :formations
+  # has_many :compagnies
 end
