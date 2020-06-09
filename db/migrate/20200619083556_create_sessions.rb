@@ -5,7 +5,7 @@ class CreateSessions < ActiveRecord::Migration[6.0]
       t.integer :max_student
       t.date :date
 
-      t.belongs_to :formation, index: true
+      #t.belongs_to :formation, index: true
       t.belongs_to :creator, index: true, foreign_key: {to_table: :admins}
 
       t.timestamps
