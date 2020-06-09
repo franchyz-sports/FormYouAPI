@@ -55,6 +55,17 @@ ActiveRecord::Schema.define(version: 2020_06_09_123954) do
     t.index ["jti"], name: "index_jwt_blacklist_on_jti"
   end
 
+  create_table "sessions", force: :cascade do |t|
+    t.integer "max_student"
+    t.date "date"
+    t.bigint "formation_id"
+    t.bigint "creator_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["creator_id"], name: "index_sessions_on_creator_id"
+    t.index ["formation_id"], name: "index_sessions_on_formation_id"
+  end
+
   create_table "students", force: :cascade do |t|
     t.string "firstname"
     t.string "lastname"
@@ -94,4 +105,5 @@ ActiveRecord::Schema.define(version: 2020_06_09_123954) do
     t.index ["reset_password_token"], name: "index_teachers_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "sessions", "admins", column: "creator_id"
 end
