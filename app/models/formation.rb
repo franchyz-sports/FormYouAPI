@@ -13,6 +13,5 @@ class Formation < ApplicationRecord
     elsif student_signed_in?
       return Formation.joins(:formations_students).where(:formations_students => {:student_id => current_student.id})
     end
-
   end
 end
