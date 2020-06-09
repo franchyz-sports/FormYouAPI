@@ -34,6 +34,15 @@ ActiveRecord::Schema.define(version: 2020_06_19_083556) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
+  create_table "attendances", force: :cascade do |t|
+    t.integer "note"
+    t.boolean "presence"
+    t.bigint "student_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["student_id"], name: "index_attendances_on_student_id"
+  end
+
   create_table "formations", force: :cascade do |t|
     t.string "title"
     t.text "description"
@@ -104,5 +113,6 @@ ActiveRecord::Schema.define(version: 2020_06_19_083556) do
     t.index ["email"], name: "index_teachers_on_email", unique: true
     t.index ["reset_password_token"], name: "index_teachers_on_reset_password_token", unique: true
   end
+
   add_foreign_key "sessions", "admins", column: "creator_id"
 end
