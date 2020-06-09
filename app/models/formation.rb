@@ -1,8 +1,7 @@
 class Formation < ApplicationRecord
   belongs_to :teacher
-  belongs_to :admin
+  belongs_to :creator, class_name: 'Admin'
   has_many :sessions
-  has_and_belongs_to_many :students
   # has_and_belongs_to_many :categories
 
   def self.get_personal_formations

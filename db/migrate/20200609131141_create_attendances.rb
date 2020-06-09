@@ -4,7 +4,7 @@ class CreateAttendances < ActiveRecord::Migration[6.0]
       t.integer     :note
       t.boolean     :presence
       t.belongs_to  :student
-      # t.belongs_to  :session
+      t.belongs_to  :session
       t.timestamps
     end
   end
