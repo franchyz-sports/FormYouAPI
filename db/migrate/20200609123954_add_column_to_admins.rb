@@ -4,8 +4,8 @@ class AddColumnToAdmins < ActiveRecord::Migration[6.0]
     add_column :admins, :last_name, :string
     add_column :admins, :birthdate, :string
     add_column :admins, :gender, :string
-    add_column :admins, :adress, :string
+    add_column :admins, :address, :string
     add_column :admins, :city, :string
-    add_column :admins, :zipcode, :string
+    add_column :admins, :zip_code, :string
   end
 end
