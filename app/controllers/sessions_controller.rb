@@ -1,6 +1,13 @@
 class SessionsController < ApplicationController
+
+  def show 
+    @session = Session.find(params[:id])
+
+    render json: @session
+  end
+
   def create
-    @session = Session.new(formation_params)
+    @session = Session.new(session_params)
     if admin_signed_in?
       if @session.save
         render json: @session, status: :created, location: @session
