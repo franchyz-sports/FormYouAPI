@@ -27,6 +27,20 @@ ActiveRecord::Schema.define(version: 2020_06_09_100807) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
+  create_table "formations", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "formations_students", id: false, force: :cascade do |t|
+    t.bigint "formation_id"
+    t.bigint "student_id"
+    t.index ["formation_id"], name: "index_formations_students_on_formation_id"
+    t.index ["student_id"], name: "index_formations_students_on_student_id"
+  end
+
   create_table "jwt_blacklist", force: :cascade do |t|
     t.string "jti", null: false
     t.datetime "created_at", precision: 6, null: false
