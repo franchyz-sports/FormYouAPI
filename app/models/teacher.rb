@@ -1,14 +1,9 @@
-class Student < ApplicationRecord
+class Teacher < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable,
-         :jwt_authenticatable,
+         :recoverable, :rememberable, :validatable, :jwt_authenticatable,
          jwt_revocation_strategy: JwtBlacklist
 
-
-  has_many :attendances
-  has_many :sessions, through: :attendances
-
-  # belongs_to :company
+  has_many :formations
 end
