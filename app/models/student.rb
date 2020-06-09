@@ -8,4 +8,5 @@ class Student < ApplicationRecord
 
   has_and_belongs_to_many :formations
   has_many                :attendances
+  # belongs_to :company
 end

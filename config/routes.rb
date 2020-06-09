@@ -4,7 +4,9 @@ Rails.application.routes.draw do
   devise_for :admins, controllers: { sessions: 'admins/sessions' }
   devise_for :teachers, controllers: { sessions: 'teachers/sessions' }
   devise_for :students, controllers: { sessions: 'students/sessions' }
-  resources :formations
+  resources :formations do 
+    resources :sessions
+  end
 
   # => ADDITIONNAL FORMATIONS ROUTES
   get '/myformations',            to: 'formations#myformations'
