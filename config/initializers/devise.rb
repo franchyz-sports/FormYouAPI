@@ -4,24 +4,6 @@
 # Many of these configuration options can be set straight in your model.
 Devise.setup do |config|
 
-  config.jwt do |jwt|
-    jwt.secret = ENV['DEVISE_JWT_SECRET_KEY']
-    jwt.expiration_time = 1.day.to_i
-    jwt.dispatch_requests = [
-      ['POST', %r{^/students/sign_in.json$}],
-      ['POST', %r{^/students.json$}],
-    jwt.revocation_requests = [
-      ['DELETE', %r{^/students/sign_out.json$}]
-    ]
-                            ]
-
-
-    jwt.request_formats = {
-                      users: [:json],
-                    }
-
-  end
-
   # The secret key used by Devise. Devise uses this key to generate
   # random tokens. Changing this key will render invalid all existing
   # confirmation, reset password and unlock tokens in the database.
@@ -315,4 +297,18 @@ Devise.setup do |config|
   # When set to false, does not sign a user in automatically after their password is
   # changed. Defaults to true, so a user is signed in automatically after changing a password.
   # config.sign_in_after_change_password = true
+  config.jwt do |jwt|
+    jwt.secret = ENV['DEVISE_JWT_SECRET_KEY']
+    jwt.expiration_time = 1.day.to_i
+    jwt.dispatch_requests = [
+      ['POST', %r{^/students/sign_in.json$}],
+      ['POST', %r{^/students.json$}],
+    ]
+    jwt.revocation_requests = [
+      ['DELETE', %r{^/students/sign_out.json$}]
+    ]
+    jwt.request_formats = {
+      user: [:json]
+    }
+  end
 end
