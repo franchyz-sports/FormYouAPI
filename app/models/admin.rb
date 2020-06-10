@@ -9,4 +9,9 @@ class Admin < ApplicationRecord
   # has_many :rooms
   has_many :formations
   # has_many :compagnies
+  after_create :welcome_send
+
+  def welcome_send
+    AdminMailer.welcome_email(self).deliver_now
+  end
 end
