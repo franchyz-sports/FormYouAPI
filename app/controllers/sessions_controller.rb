@@ -6,8 +6,8 @@ class SessionsController < ApplicationController
   before_action :check_admin, only: [:all_sessions]
 
   #before_action :check_auth, except: [:index]
-  #before_action :decode_token, except: [:index]
-  #before_action :admin, only: [:all_sessions, :create, :edit, :update]
+  #before_action :decode_token, except: [:index, :show]
+  #before_action :admin, only: [:all_sessions, :create, :edit, :update, :destroy]
 
   def show 
     render json: @session
@@ -51,6 +51,10 @@ class SessionsController < ApplicationController
       end
   end
 
+  def destroy
+    @session.destroy
+  end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -63,22 +67,5 @@ class SessionsController < ApplicationController
       params.require(:session).permit(:max_student, :date)
     end
 
-    def decode_token
-      token = request.headers['Authorization'].split[1]
-      @decoded_token = JWT.decode token, nil, false
-      puts 'dddddddddddddd'
-      puts @decoded_token
-    end
 
-    def check_auth
-      if (request.headers['Authorization'] == nil)
-        render json: 'token is missing'
-      end
-    end
-
-    def check_admin
-      if @decoded_token[0]['scp'] != 'admin'
-        render json: 'you are not an admin'
-      end
-    end
 end
