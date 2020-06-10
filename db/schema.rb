@@ -99,10 +99,12 @@ ActiveRecord::Schema.define(version: 2020_06_19_083559) do
     t.date "date"
     t.bigint "formation_id"
     t.bigint "creator_id"
+    t.bigint "room_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["creator_id"], name: "index_sessions_on_creator_id"
     t.index ["formation_id"], name: "index_sessions_on_formation_id"
+    t.index ["room_id"], name: "index_sessions_on_room_id"
   end
 
   create_table "students", force: :cascade do |t|
@@ -114,6 +116,7 @@ ActiveRecord::Schema.define(version: 2020_06_19_083559) do
     t.string "city"
     t.string "zip_code"
     t.string "study_level"
+    t.bigint "company_id"
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -121,6 +124,7 @@ ActiveRecord::Schema.define(version: 2020_06_19_083559) do
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["company_id"], name: "index_students_on_company_id"
     t.index ["email"], name: "index_students_on_email", unique: true
     t.index ["reset_password_token"], name: "index_students_on_reset_password_token", unique: true
   end
