@@ -6,6 +6,9 @@ class Student < ApplicationRecord
          :jwt_authenticatable,
          jwt_revocation_strategy: JwtBlacklist
 
-  has_and_belongs_to_many :formations
-  # belongs_to :compagny
+
+  has_many :attendances
+  has_many :sessions, through: :attendances
+
+  # belongs_to :company
 end
