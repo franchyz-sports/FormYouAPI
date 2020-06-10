@@ -34,7 +34,7 @@ class FormationsController < ApplicationController
     else
       "ERREUR"
     end
-
+    
   end
 
   # PATCH/PUT /formations/1
