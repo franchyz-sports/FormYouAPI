@@ -1,5 +1,5 @@
 class TeacherMailer < ApplicationMailer
-  default from: 'no-reply@monsite.fr'
+  default from: 'no.reply.formyou@protonmail.com'
  
   def welcome_email(teacher)
     #on récupère l'instance teacher pour ensuite pouvoir la passer à la view en @teacher

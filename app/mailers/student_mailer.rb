@@ -1,5 +1,5 @@
 class StudentMailer < ApplicationMailer
-  default from: 'no-reply@monsite.fr'
+  default from: 'no.reply.formyou@protonmail.com'
  
   def welcome_email(student)
     #on récupère l'instance student pour ensuite pouvoir la passer à la view en @student
