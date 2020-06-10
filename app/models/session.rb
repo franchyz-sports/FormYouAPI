@@ -8,16 +8,17 @@ class Session < ApplicationRecord
   belongs_to :formation
   belongs_to :creator, class_name: 'Admin'
 
-  self.get_my_sessions(params)
+  def self.get_my_sessions(params)
   
+    answer = ''
     if is_teacher?
       answer = Session.joins(:formation).where("teacher_id = ?", params.id)
-    else if is_student?
-      answer = Session.joins(:formation).where(student_id: params.id)
+    elsif is_student?
+      answer = Session.joins(:students).where("student_id = ?", params.id)
     else
       answer = "dw"
     end
 
-    answer
+  return answer
   end
 end

@@ -20,7 +20,7 @@ class SessionsController < ApplicationController
 
   def my_sessions
     id = Teacher.sample.id
-    @sessions = Session.get_my_sessions(user_id: id)
+    @sessions = Session.get_my_sessions(id: id)
     render json: @sessions
   end
 
