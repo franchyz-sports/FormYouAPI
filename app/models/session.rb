@@ -1,5 +1,6 @@
 class Session < ApplicationRecord
 
+  include UsersHelper
   #has_one :room
 
   has_many :attendances
@@ -8,16 +9,17 @@ class Session < ApplicationRecord
   belongs_to :formation
   belongs_to :creator, class_name: 'Admin'
 
-  def self.get_my_sessions(params)
+  def self.get_my_sessions(id)
   
-    answer = ''
-    if is_teacher?
-      answer = Session.joins(:formation).where("teacher_id = ?", params.id)
-    elsif is_student?
-      answer = Session.joins(:students).where("student_id = ?", params.id)
+    if true
+      answer = Session.joins(:formation).where("teacher_id = ?", id)
+    elsif true
+      answer = Session.joins(:students).where("student_id = ?", id)
     else
       answer = "dw"
     end
+
+    Formation.joins(:sessions, :students).where("student_id = ?", id)
 
   return answer
   end

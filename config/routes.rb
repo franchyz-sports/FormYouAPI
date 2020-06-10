@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   # => ADDITIONNAL FORMATIONS ROUTES
   get '/myformations',            to: 'formations#myformations'
   # => ADDITIONNAL SESSIONS ROUTES
-  get '/mysessions',            to: 'sessions#myformations'
+  get '/mysessions',            to: 'sessions#my_sessions'
 
 
 

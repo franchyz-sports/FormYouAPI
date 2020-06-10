@@ -19,8 +19,8 @@ class SessionsController < ApplicationController
   end
 
   def my_sessions
-    id = Teacher.sample.id
-    @sessions = Session.get_my_sessions(id: id)
+    id = Teacher.all.sample.id
+    @sessions = Session.get_my_sessions(id)
     render json: @sessions
   end
 
