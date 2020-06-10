@@ -3,7 +3,7 @@
 class DeviseCreateStudents < ActiveRecord::Migration[6.0]
   def change
     create_table :students do |t|
-      ## Attributes 
+      ## Attributes
       t.string :first_name
       t.string :last_name
       t.date :birthdate
@@ -12,7 +12,8 @@ class DeviseCreateStudents < ActiveRecord::Migration[6.0]
       t.string :city
       t.string :zip_code
       t.string :study_level
-         
+      t.belongs_to :company
+
       ## Database authenticatable
       t.string :email,              null: false, default: ""
       t.string :encrypted_password, null: false, default: ""

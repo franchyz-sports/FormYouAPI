@@ -10,10 +10,8 @@ class FormationsController < ApplicationController
 
   # GET /formations/1
   def show
-    super {
-      @formation
-      @sessions = @formation.sessions
-    }
+    @formation
+    @sessions = @formation.sessions    
   end
 
   # GET /myformations
