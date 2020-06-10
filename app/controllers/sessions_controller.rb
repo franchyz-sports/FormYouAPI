@@ -23,8 +23,8 @@ class SessionsController < ApplicationController
   end
 
   def my_sessions
-    id = decode_token[0]['sub']
-    type = decode_token[0]['scp']
+    id = @decoded_token[0]['sub']
+    type = @decoded_token[0]['scp']
     @sessions = Session.get_my_sessions(id, type)
     puts @sessions
     render json: @sessions
@@ -65,7 +65,9 @@ class SessionsController < ApplicationController
 
     def decode_token
       token = request.headers['Authorization'].split[1]
-      decoded_token = JWT.decode token, nil, false
+      @decoded_token = JWT.decode token, nil, false
+      puts 'dddddddddddddd'
+      puts @decoded_token
     end
 
     def check_auth
@@ -75,7 +77,7 @@ class SessionsController < ApplicationController
     end
 
     def check_admin
-      if decode_token['scp'] != 'admin'
+      if @decoded_token[0]['scp'] != 'admin'
         render json: 'you are not an admin'
       end
     end
