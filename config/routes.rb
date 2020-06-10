@@ -14,7 +14,8 @@ Rails.application.routes.draw do
   end
 
   # => ADDITIONNAL FORMATIONS ROUTES
-  get '/myformations',            to: 'formations#myformations' 
+  get '/myformations',            to: 'formations#myformations'
+  get '/mysessions',            to: 'sessions#mysessions'
 
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

@@ -17,6 +17,12 @@ class SessionsController < ApplicationController
    end
  end
 
+ # GET /mysessions
+ def mysessions
+   @personal_sessions = Session.get_personal_sessions
+   render json: @personal_sessions
+ end
+
 private
 
  def session_params
