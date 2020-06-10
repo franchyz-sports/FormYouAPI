@@ -1,11 +1,19 @@
 class FormationsController < ApplicationController
   before_action :set_formation, only: [:show, :update, :destroy]
 
+  
+  before_action :check_auth, only: [:myformations]
+  before_action :decode_token, only: [:myformations]
+
+  #before_action :check_auth, except: [:index, :show]
+  #before_action :decode_token, except: [:index, :show]
+  #before_action :admin, only: [:all_formations, :create, :edit, :update, :destroy]
+  #
   # GET /formations
   def index
     @formations = Formation.all
-
     render json: @formations
+
   end
 
   # GET /formations/1
@@ -16,23 +24,25 @@ class FormationsController < ApplicationController
 
   # GET /myformations
   def myformations
-    @personal_formations = Formation.get_personal_formations
+    
+    id = @decoded_token[0]['sub']
+    type = @decoded_token[0]['scp']
+    @personal_formations = Formation.get_personal_formations(id, type)
     render json: @personal_formations
   end
 
   # POST /formations
   def create
     @formation = Formation.new(formation_params)
-    if admin_signed_in?
       if @formation.save
         render json: @formation, status: :created, location: @formation
       else
         render json: @formation.errors, status: :unprocessable_entity
       end
-    else
-      "ERREUR"
-    end
-
+  end
+  
+  def edit
+    render json: @session
   end
 
   # PATCH/PUT /formations/1

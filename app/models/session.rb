@@ -22,18 +22,18 @@ class Session < ApplicationRecord
   end
 =end
 
-  def self.get_my_sessions(id)
+  def self.get_my_sessions(id, type)
+    puts type
   
-    if true
+    if (type == 'teacher')
       answer = Session.joins(:formation).where("teacher_id = ?", id)
-    elsif true
+    elsif (type == 'student')
       answer = Session.joins(:students).where("student_id = ?", id)
     else
-      answer = "dw"
+      answer = "error"
     end
 
-    Formation.joins(:sessions, :students).where("student_id = ?", id)
-
   return answer
+
   end
 end
