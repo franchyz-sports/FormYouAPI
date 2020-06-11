@@ -1,4 +1,6 @@
 class RoomsController < ApplicationController
+  before_action :check_auth, only: [:show, :index]
+  before_action :check_admin, only: [:create, :edit, :update, :destroy]
   before_action :set_room, only: [:show, :update, :destroy]
 
   # GET /rooms

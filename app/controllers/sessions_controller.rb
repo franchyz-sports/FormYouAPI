@@ -9,11 +9,11 @@ class SessionsController < ApplicationController
   #before_action :decode_token, except: [:index, :show]
   #before_action :admin, only: [:all_sessions, :create, :edit, :update, :destroy]
 
-  def show 
+  def show
     render json: @session
   end
 
-  def index 
+  def index
     @sessions = Session.where(formation_id: params[:formation_id])
     render json: @sessions
   end
@@ -66,6 +66,5 @@ class SessionsController < ApplicationController
     def formation_params
       params.require(:session).permit(:max_student, :date)
     end
-
 
 end
