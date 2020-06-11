@@ -1,4 +1,6 @@
 class CompaniesController < ApplicationController
+  before_action :check_auth, only: [:show]
+  before_action :check_admin, only: [:create, :edit, :update, :destroy]
   before_action :set_company, only: [:show, :update, :destroy]
 
   # GET /companies

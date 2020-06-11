@@ -1,4 +1,6 @@
 class CategoriesController < ApplicationController
+  before_action :check_auth, only: [:show]
+  before_action :check_admin, only: [:create, :edit, :update, :destroy]
   before_action :set_category, only: [:show, :update, :destroy]
 
   # GET /categories
@@ -10,6 +12,7 @@ class CategoriesController < ApplicationController
   # GET /categories/1
   # GET /categories/1.json
   def show
+    @formations = @category.formations
   end
 
   # POST /categories
