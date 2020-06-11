@@ -12,6 +12,11 @@ class AdminsController < ApplicationController
   # GET /admins/1
   def show
     @admin
+    @rooms = @admin.rooms
+    @categories = @admin.categories
+    @companies = @admin.companies
+    @formations = @admin.formations
+    
   end
 
   def edit
