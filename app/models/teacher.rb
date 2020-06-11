@@ -6,4 +6,9 @@ class Teacher < ApplicationRecord
          jwt_revocation_strategy: JwtBlacklist
 
   has_many :formations
+  after_create :welcome_send
+
+  def welcome_send
+    TeacherMailer.welcome_email(self).deliver_now
+  end
 end
