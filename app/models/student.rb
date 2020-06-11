@@ -9,6 +9,12 @@ class Student < ApplicationRecord
 
   has_many :attendances
   has_many :sessions, through: :attendances
-
   belongs_to :company
+
+  after_create :welcome_send
+
+  def welcome_send
+    StudentMailer.welcome_email(self).deliver_now
+  end
+
 end
