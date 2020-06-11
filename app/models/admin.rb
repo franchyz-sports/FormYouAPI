@@ -6,7 +6,7 @@ class Admin < ApplicationRecord
          jwt_revocation_strategy: JwtBlacklist
   has_many :sessions
   has_many :categories
-  # has_many :rooms
+  has_many :rooms, inverse_of: :creator
   has_many :formations
-  # has_many :compagnies
+  has_many :companies
 end

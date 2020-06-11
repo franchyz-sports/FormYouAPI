@@ -304,6 +304,14 @@ Devise.setup do |config|
       ['POST', %r{^/students/sign_in.json$}],
       ['POST', %r{^/students.json$}],
     ]
+    jwt.dispatch_requests = [
+      ['POST', %r{^/teachers/sign_in.json$}],
+      ['POST', %r{^/teachers.json$}],
+    ]
+    jwt.dispatch_requests = [
+      ['POST', %r{^/admins/sign_in.json$}],
+      ['POST', %r{^/admins.json$}],
+    ]
     jwt.revocation_requests = [
       ['DELETE', %r{^/students/sign_out.json$}]
     ]
