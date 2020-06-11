@@ -9,11 +9,13 @@ class Student < ApplicationRecord
   has_many :attendances
   has_many :sessions, through: :attendances
   belongs_to :company, optional: true
+
   after_create :welcome_send
 
   def welcome_send
     StudentMailer.welcome_email(self).deliver_now
   end
+
 
   def self.get_data(student_id, user_id, user_type)
     if (user_type == 'student' && user_id == 'student_id' || user_type == 'admin')
@@ -22,4 +24,7 @@ class Student < ApplicationRecord
       render json: 'Access Unauthorized'
     end
   end
+
+  
+
 end
