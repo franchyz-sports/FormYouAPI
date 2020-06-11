@@ -10,12 +10,11 @@ class SessionsController < ApplicationController
   #before_action :admin, only: [:all_sessions, :create, :edit, :update, :destroy]
 
   def show
-    render json: @session
+    @session
   end
 
   def index
     @sessions = Session.where(formation_id: params[:formation_id])
-    render json: @sessions
   end
 
   def all_sessions
