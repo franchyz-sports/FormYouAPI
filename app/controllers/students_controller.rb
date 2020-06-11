@@ -12,6 +12,7 @@ class StudentsController < ApplicationController
   def show
     @student
     @sessions = @student.sessions
+    @company = @student.company
   end
 
   def edit

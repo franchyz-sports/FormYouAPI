@@ -1,18 +1,24 @@
 
 json.array! @formations do |formation|
   json.formation do
+    json.id formation.id
     json.title formation.title
     json.description formation.description
-    json.teacher do
-      json.id formation.teacher.id
-      json.first_name formation.teacher.first_name
-      json.last_name formation.teacher.last_name
-      json.birthdate formation.teacher.birthdate
-      json.gender formation.teacher.gender
-      json.address formation.teacher.address
-      json.city formation.teacher.city
-      json.zip_code formation.teacher.zip_code
-      json.expertise formation.teacher.expertise
-    end
+  end
+
+  json.teacher formation.teacher do |teacher|
+    json.id teacher.id
+    json.first_name teacher.first_name
+    json.last_name teacher.last_name
+    json.birthdate teacher.birthdate
+    json.gender teacher.gender
+    json.address teacher.address
+    json.city teacher.city
+    json.zip_code teacher.zip_code
+    json.expertise teacher.expertise
+  end
+
+  json.categories formation.categories.each do |category|
+    json.category category.title
   end
 end

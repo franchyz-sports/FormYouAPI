@@ -12,6 +12,8 @@ class FormationsController < ApplicationController
   def show
     @formation
     @sessions = @formation.sessions
+    @teacher = @formation.teacher
+    @categories = @formation.categories
   end
 
   # GET /myformations
