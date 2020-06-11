@@ -22,7 +22,6 @@ class FormationsController < ApplicationController
 
   # GET /myformations
   def myformations
-
     id = @decoded_token[0]['sub']
     type = @decoded_token[0]['scp']
     @personal_formations = Formation.get_personal_formations(id, type)
@@ -40,7 +39,7 @@ class FormationsController < ApplicationController
   end
 
   def edit
-    render json: @session
+    render json: @formation
   end
 
   # PATCH/PUT /formations/1
