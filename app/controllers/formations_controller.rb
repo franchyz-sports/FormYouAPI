@@ -1,7 +1,7 @@
 class FormationsController < ApplicationController
   before_action :set_formation, only: [:show, :update, :destroy]
 
-  
+
   before_action :check_auth, only: [:myformations]
   before_action :decode_token, only: [:myformations]
 
@@ -12,19 +12,17 @@ class FormationsController < ApplicationController
   # GET /formations
   def index
     @formations = Formation.all
-    render json: @formations
-
   end
 
   # GET /formations/1
   def show
     @formation
-    @sessions = @formation.sessions    
+    @sessions = @formation.sessions
   end
 
   # GET /myformations
   def myformations
-    
+
     id = @decoded_token[0]['sub']
     type = @decoded_token[0]['scp']
     @personal_formations = Formation.get_personal_formations(id, type)
@@ -40,7 +38,7 @@ class FormationsController < ApplicationController
         render json: @formation.errors, status: :unprocessable_entity
       end
   end
-  
+
   def edit
     render json: @session
   end
