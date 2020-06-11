@@ -6,6 +6,11 @@ class Teacher < ApplicationRecord
          jwt_revocation_strategy: JwtBlacklist
 
   has_many :formations
+  after_create :welcome_send
+
+  def welcome_send
+    TeacherMailer.welcome_email(self).deliver_now
+  end
 
   def self.get_data(teacher_id, user_id, user_type)
     if (user_type == 'teacher' && user_id == 'teacher_id' || user_type == 'admin')
