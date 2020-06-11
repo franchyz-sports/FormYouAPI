@@ -1,14 +1,8 @@
 class FormationsController < ApplicationController
-  before_action :set_formation, only: [:show, :update, :destroy]
-
-
   before_action :check_auth, only: [:myformations]
   before_action :decode_token, only: [:myformations]
+  before_action :set_formation, only: [:show, :update, :destroy]
 
-  #before_action :check_auth, except: [:index, :show]
-  #before_action :decode_token, except: [:index, :show]
-  #before_action :admin, only: [:all_formations, :create, :edit, :update, :destroy]
-  #
   # GET /formations
   def index
     @formations = Formation.all
