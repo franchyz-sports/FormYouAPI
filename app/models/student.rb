@@ -10,6 +10,7 @@ class Student < ApplicationRecord
   has_many :attendances
   has_many :sessions, through: :attendances
   belongs_to :company, optional: true
+
   after_create :welcome_send
 
   def welcome_send
