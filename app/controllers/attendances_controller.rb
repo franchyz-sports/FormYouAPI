@@ -10,12 +10,18 @@ class AttendancesController < ApplicationController
   # POST /attendances.json
   def create
     @attendance = Attendance.new(session_id: attendance_params[:session_id], student_id: current_student.id)
-
-    if @attendance.save
-      render json: @attendance, status: :created
+    @attendances = Attendance.all
+    
+    if @attendances.where(session_id: @attendance.session_id).length < @attendance.session.max_student
+      if @attendance.save
+        render json: @attendance, status: :created
+      else
+        render json: @attendance.errors, status: :unprocessable_entity
+      end
     else
-      render json: @attendance.errors, status: :unprocessable_entity
+      render json: "Session is full", status: :unprocessable_entity
     end
+    
   end
 
   # PATCH/PUT /attendances/1
