@@ -9,7 +9,7 @@ class AttendancesController < ApplicationController
   # POST /attendances
   # POST /attendances.json
   def create
-    @attendance = Attendance.new(attendance_params)
+    @attendance = Attendance.new(session_id: attendance_params[:session_id], student_id: current_student.id)
 
     if @attendance.save
       render json: @attendance, status: :created
@@ -21,11 +21,16 @@ class AttendancesController < ApplicationController
   # PATCH/PUT /attendances/1
   # PATCH/PUT /attendances/1.json
   def update
-    if @attendance.update(attendance_params)
-      render json: @attendance
+    if current_teacher != nil
+      if @attendance.update(attendance_params)
+        render json: @attendance
+      else
+        render json: @attendance.errors, status: :unprocessable_entity
+      end
     else
-      render json: @attendance.errors, status: :unprocessable_entity
+      render json: "Only teachers are allowed to modify attendances", status: :unprocessable_entity
     end
+
   end
 
   # DELETE /attendances/1
@@ -42,6 +47,6 @@ class AttendancesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def attendance_params
-      params.require(:attendance).permit(:note, :present)
+      params.require(:attendance).permit(:note, :present, :session_id)
     end
 end
